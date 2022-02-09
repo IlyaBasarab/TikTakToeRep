@@ -55,12 +55,12 @@ namespace TikTakToe
                 return false;
             else if (element == 1)
             {
-                Console.WriteLine("_________ " + visual.GetSimbol( player1.GetPlayer())+ "   wins!   __________________________");
+                Console.WriteLine(" '\n'_________ " + visual.GetSimbol( player1.GetPlayer())+ "   wins!   __________________________");
                 return true;
             }
             else if (element == 2)
             {
-                Console.WriteLine("_________" + visual.GetSimbol( player2.GetPlayer()) + "  wins!   ______________________");
+                Console.WriteLine(" '\n' _________" + visual.GetSimbol( player2.GetPlayer()) + "  wins!   ______________________");
                 return true;
             }
 
