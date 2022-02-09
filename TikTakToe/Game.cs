@@ -89,7 +89,7 @@ namespace TikTakToe
                                 return board.GetElem(i, j);
 
                             else if (board.GetElem(i+2, j) == board.GetElem(i + 1, j + 1) && board.GetElem(i + 1, j + 1) == board.GetElem(i, j + 2))
-                                return board.GetElem(i, j);
+                                return board.GetElem(i + 2, j);
 
                             return 0;
                         }
