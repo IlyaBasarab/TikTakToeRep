@@ -37,12 +37,20 @@ namespace TikTakToe
 
         public int GetRowCount()
         {
-            return board.GetLength(0);
+            try
+            { 
+                return board.GetLength(0);
+            }
+            catch(Exception ex) { return 0; }
         }
 
         public int GetColCount()
         {
-            return board.GetLength(1);
+            try
+            {
+                return board.GetLength(1);
+            }
+            catch(Exception ex) { return 0; }
         }
 
 
@@ -52,16 +60,13 @@ namespace TikTakToe
             { 
                 return board[row, col] == 0; 
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex); 
                 return false;                
             }
             
         }
-
-
-
         public Board()
         {
 
@@ -91,6 +96,29 @@ namespace TikTakToe
                 }
                 Console.WriteLine("");
             }
+        }
+
+
+        public bool IsBoardFull(Board board)
+        {
+            try
+            {
+                for (int i = 0; i < board.GetRowCount() - 1; i++)
+                {
+                    for (int j = 0; j < board.GetColCount() - 1; j++)
+                    {
+                        if (board.IsEmpty(i, j))
+                            return false;
+                    }
+                }
+                Console.WriteLine("Draw!");
+                return true;
+            }
+            catch(ArgumentException ex)
+            {}
+            return true;
+
+
         }
 
         public char GetSimbol(int value)
