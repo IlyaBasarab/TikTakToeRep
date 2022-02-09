@@ -28,7 +28,7 @@ namespace TikTakToe
 
             bool player1Turn = true;
 
-            while(!IsGemeOver())
+            while(!IsGemeOver()&& !visual.IsBoardFull(board))
             {
                 if(player1Turn)
                 {
@@ -60,7 +60,7 @@ namespace TikTakToe
             }
             else if (element == 2)
             {
-                Console.WriteLine(" '\n' _________" + visual.GetSimbol( player2.GetPlayer()) + "  wins!   ______________________");
+                Console.WriteLine(" \n _________" + visual.GetSimbol( player2.GetPlayer()) + "  wins!   ______________________");
                 return true;
             }
 
@@ -86,6 +86,9 @@ namespace TikTakToe
                                 return board.GetElem(i, j);
 
                             else if (board.GetElem(i, j) == board.GetElem(i + 1, j + 1) && board.GetElem(i + 1, j + 1) == board.GetElem(i + 2, j + 2))
+                                return board.GetElem(i, j);
+
+                            else if (board.GetElem(i+2, j) == board.GetElem(i + 1, j + 1) && board.GetElem(i + 1, j + 1) == board.GetElem(i, j + 2))
                                 return board.GetElem(i, j);
 
                             return 0;
