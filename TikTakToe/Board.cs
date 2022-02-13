@@ -106,7 +106,7 @@ namespace TikTakToe
             try
             {
 
-                for (int i = 0; i < GetRowCount() - 1; i++)
+                for (int i = 0; i < GetRowCount(); i++)
                 {
                     if (GetElem(0, i) == GetElem(1, i) && GetElem(1, i) == GetElem(2, i))
                     {
@@ -114,7 +114,7 @@ namespace TikTakToe
                     }
                 }
 
-                for(int j =0; j<GetColCount()-1;j++)
+                for(int j =0; j<GetColCount();j++)
                 { 
 
                 if (GetElem(j, 0) == GetElem(j, 1) && GetElem(j, 1) == GetElem(j, 2))
@@ -156,9 +156,10 @@ namespace TikTakToe
                 int check = 0;
 
                 while (check!=4) { 
-                if (check==0)
+               
+                 if (check==0)
                 {
-                        for (int i = 0; i < GetRowCount() - 1; i++)
+                        for (int i = 0; i < GetRowCount()-1; i++)
                         {
                             row[0] = board[i, 0];
                             row[1] = board[i, 1];
@@ -166,9 +167,11 @@ namespace TikTakToe
                             Array.Sort(row, new CellComp());
                             if (row[0].elem == 0 && row[1].elem == winnerPlayer && row[2].elem == winnerPlayer)
                             {
-                                return winCell = row[0];
+                                winCell = row[0];
+                                return winCell;
                             }
                         }
+
                         check ++;
 
 
@@ -177,7 +180,7 @@ namespace TikTakToe
                 {
 
 
-                    for (int j = 0; j < GetColCount() - 1; j++)
+                    for (int j = 0; j < GetColCount()-1; j++)
                     {
                         col[0] = board[0, j];
                         col[1] = board[1, j];
@@ -186,13 +189,13 @@ namespace TikTakToe
                             Array.Sort(col, new CellComp());
                             if (col[0].elem == 0 && col[1].elem == winnerPlayer && col[2].elem == winnerPlayer)
                             {
-                                
-                                return winCell = col[0];
+                                winCell = col[0];
+                                return winCell;
                             }
-                            check ++;
                      }
+                    check++;
 
-                }
+                    }
 
                 else if (check==2)
                 {
@@ -202,9 +205,11 @@ namespace TikTakToe
                     Array.Sort(line1, new CellComp());
                     if (line1[0].elem == 0 && line1[1].elem == winnerPlayer && line1[2].elem == winnerPlayer)
                     {
-                        return winCell = line1[0];
+                            winCell = line1[0];
+                        return winCell;
                     }
-                    check ++;
+                    else
+                        check ++;
                     }
                 else if (check==3)
                 {
@@ -214,9 +219,11 @@ namespace TikTakToe
                     Array.Sort(line2, new CellComp());
                     if (line2[0].elem == 0 && line2[1].elem == winnerPlayer && line2[2].elem == winnerPlayer)
                     {
-                         return winCell = line2[0];
+                            winCell = line2[0];
+                            return winCell;
                     }
-                     check ++;
+                    else
+                        check = 4;
                     }
                 }
                 
