@@ -158,10 +158,13 @@ namespace TikTakToe
                     Array.Sort(row, new CellComp());
                     if (row[0].elem == 0 && row[1].elem == winnerPlayer && row[2].elem == winnerPlayer)
                         return row[0];
+                }
 
-                    col[0] = board[0, i];
-                    col[1] = board[1, i];
-                    col[2] = board[2, i];
+                for(int j =0; j< GetColCount(); j++)
+                { 
+                    col[0] = board[0, j];
+                    col[1] = board[1, j];
+                    col[2] = board[2, j];
                     Array.Sort(col, new CellComp());
                     if (col[0].elem == 0 && col[1].elem == winnerPlayer && col[2].elem == winnerPlayer)
                         return col[0];
