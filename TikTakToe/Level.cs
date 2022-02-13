@@ -6,20 +6,16 @@ using System.Threading.Tasks;
 
 namespace TikTakToe
 {
- 
-
-   
-
-
-
-
-    class Program
+    abstract class Level
     {
-        static void Main(string[] args)
+
+
+        public Level()
         {
 
-            Game game = new Game();
-            game.Start();
         }
+
+        public abstract void MakeMove(Board board, int playerSymbol);
+
     }
 }
