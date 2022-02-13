@@ -131,7 +131,7 @@ namespace TikTakToe
 
                 else if (GetElem(2, 0) == GetElem(1, 1) && GetElem(1, 1) == GetElem(0, 2))
                 {
-                    return GetElem(2, 1);
+                    return GetElem(2, 0);
                 }
 
             }
@@ -159,7 +159,7 @@ namespace TikTakToe
                
                  if (check==0)
                 {
-                        for (int i = 0; i < GetRowCount()-1; i++)
+                        for (int i = 0; i < GetRowCount(); i++)
                         {
                             row[0] = board[i, 0];
                             row[1] = board[i, 1];
@@ -180,7 +180,7 @@ namespace TikTakToe
                 {
 
 
-                    for (int j = 0; j < GetColCount()-1; j++)
+                    for (int j = 0; j < GetColCount(); j++)
                     {
                         col[0] = board[0, j];
                         col[1] = board[1, j];
