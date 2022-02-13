@@ -21,7 +21,7 @@ namespace TikTakToe
         {
             
             
-            if (board.GetWinnerCell(1)==null)
+            if (board.GetWinnerCell(1).elem==3)
             {
                 int rowIdx = 0;
                 int colIdx = 0;
