@@ -20,7 +20,7 @@ namespace TikTakToe
                 for (int j = 0; j < board.GetColCount(); j++)
                 {
                     int elem = board.GetElem(i, j);
-                    char symbol = GetSimbol(elem);
+                    char symbol = GetSymbol(elem);
 
                     Console.Write(symbol + "\t");
 
@@ -33,29 +33,9 @@ namespace TikTakToe
         }
 
 
-        public bool IsBoardFull(Board board)
-        {
-            try
-            {
-                for (int i = 0; i < board.GetRowCount(); i++)
-                {
-                    for (int j = 0; j < board.GetColCount(); j++)
-                    {
-                        if (board.IsEmpty(i, j))
-                            return false;
-                    }
-                }
-                Console.WriteLine("Draw!");
-                return true;
-            }
-            catch (ArgumentException ex)
-            { }
-            return true;
+       
 
-
-        }
-
-        public char GetSimbol(int value)
+        public char GetSymbol(int value)
         {
             if (value == 1)
                 return 'X';

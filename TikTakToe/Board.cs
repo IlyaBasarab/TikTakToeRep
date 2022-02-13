@@ -78,38 +78,59 @@ namespace TikTakToe
 
         }
 
+        public bool IsBoardFull()
+        {
+            try
+            {
+                for (int i = 0; i < GetRowCount(); i++)
+                {
+                    for (int j = 0; j < GetColCount(); j++)
+                    {
+                        if (IsEmpty(i, j))
+                            return false;
+                    }
+                }
+                
+                return true;
+            }
+            catch (ArgumentException ex)
+            { }
+            return true;
+
+
+        }
+
         public int WinnerCheck()
         {
 
             try
             {
-                int drawCount = 0;
+                
                 for (int i = 0; i < GetRowCount(); i++)
                 {
-
-                    for (int j = 0; j <= GetColCount(); j++)
+                    if (GetElem(0, i) == GetElem(1, i) && GetElem(1, i) == GetElem(2, i))
                     {
-                        do
-                        {
-
-                            if (GetElem(i, j) == GetElem(i + 1, j) && GetElem(i + 1, j) == GetElem(i + 2, j))
-                                return GetElem(i, j);
-
-                            else if (GetElem(i, j) == GetElem(i, j + 1) && GetElem(i, j + 1) == GetElem(i, j + 2))
-                                return GetElem(i, j);
-
-                            else if (GetElem(i, j) == GetElem(i + 1, j + 1) && GetElem(i + 1, j + 1) == GetElem(i + 2, j + 2))
-                                return GetElem(i, j);
-
-                            else if (GetElem(i + 2, j) == GetElem(i + 1, j + 1) && GetElem(i + 1, j + 1) == GetElem(i, j + 2))
-                                return GetElem(i + 2, j);
-                            
-                            return 0;
-                        }
-                        while (!IsEmpty(i,j));
+                        return GetElem(1, i);
                     }
 
+
+                    else if (GetElem(i, 0) == GetElem(i, 1) && GetElem(i, 1) == GetElem(i, 2))
+                    {
+                        return GetElem(i, 1);
+                    }
                 }
+
+               if (GetElem(0, 0) == GetElem(1, 1) && GetElem(1, 1) == GetElem(2, 2))
+                {
+                    return GetElem(0, 0);
+                }
+
+
+                else if (GetElem(2, 0) == GetElem(1, 1) && GetElem(1, 1) == GetElem(0, 2))
+                {
+                    return GetElem(2, 1);
+                }
+
             }
             catch (Exception ex)
             {
@@ -129,44 +150,39 @@ namespace TikTakToe
                 Cell[] line1 = new Cell[3];
                 Cell[] line2 = new Cell[3];
 
-                for (int i = 0; i < board.GetLength(0); i++)
+                for (int i = 0; i < GetRowCount(); i++)
                 {
+                    row[0] = board[i, 0];
+                    row[1] = board[i, 1];
+                    row[2] = board[i, 2];
+                    Array.Sort(row, new CellComp());
+                    if (row[0].elem == 0 && row[1].elem == winnerPlayer && row[2].elem == winnerPlayer)
+                        return row[0];
 
-                    for (int j = 0; j < board.GetLength(1); j++)
-                    {
-                        
-                        row[0] = board[i, j];
-                        row[1] = board[i, j + 1];
-                        row[2] = board[i, j + 2];
-                        Array.Sort( row ,new CellComp()) ;
-                        if (row[0].elem == 0  && row[1].elem == winnerPlayer && row[2].elem == winnerPlayer)
-                            return row[0];
+                    col[0] = board[0, i];
+                    col[1] = board[1, i];
+                    col[2] = board[2, i];
+                    Array.Sort(col, new CellComp());
+                    if (col[0].elem == 0 && col[1].elem == winnerPlayer && col[2].elem == winnerPlayer)
+                        return col[0];
+                }
 
-                        col[0] = board[i, j];
-                        col[1] = board[i + 1, j];
-                        col[2] = board[i + 2, j];
-                        Array.Sort(col, new CellComp());
-                        if (col[0].elem == 0 && col[1].elem == winnerPlayer && col[2].elem == winnerPlayer)
-                            return col[0];
-
-                        line1[0] = board[i, j];
-                        line1[1] = board[i + 1, j + 1];
-                        line1[2] = board[i + 2, j + 2];
-                        Array.Sort(line1, new CellComp());
+                line1[0] = board[0, 0];
+                        line1[1] = board[1, 1];
+                        line1[2] = board[2, 2];
+                Array.Sort(line1, new CellComp());
                         if (line1[0].elem == 0 && line1[1].elem == winnerPlayer && line1[2].elem == winnerPlayer)
                             return line1[0];
 
-                        line2[0] = board[i + 2, j];
-                        line2[1] = board[i + 1, j + 1];
-                        line2[2] = board[i, j + 2];
+                        line2[0] = board[2,0];
+                        line2[1] = board[1, 1];
+                        line2[2] = board[0, 2];
                         Array.Sort(line2, new CellComp());
                         if (line2[0].elem == 0 && line2[1].elem == winnerPlayer && line2[2].elem == winnerPlayer)
                             return line2[0];
 
-
-                    }
-                }
-                return null;
+    
+            return null;
 
             }
             catch(Exception ex)
@@ -177,9 +193,6 @@ namespace TikTakToe
 
 
         }
-
-        
-
 
         public Board()
         {

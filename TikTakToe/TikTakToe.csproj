@@ -48,6 +48,7 @@
     <Compile Include="Comparator.cs" />
     <Compile Include="EasyLevel.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="HardLevel.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="MediumLevel.cs" />
     <Compile Include="Player.cs" />

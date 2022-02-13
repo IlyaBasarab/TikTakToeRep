@@ -56,7 +56,7 @@ namespace TikTakToe
                 else if(levelValue == 3)
                 {
                     Console.WriteLine("Hard level.");
-                    player2 = new CpuPlayer(new EasyLevel(board), 2);
+                    player2 = new CpuPlayer(new HardLevel(board), 2);
                 }
                    
             }
@@ -64,7 +64,7 @@ namespace TikTakToe
 
             bool player1Turn = true;
 
-            while (!IsGameOver() && !visual.IsBoardFull(board))
+            while (!IsGameOver())
             {
                 if (player1Turn)
                 {
@@ -77,34 +77,34 @@ namespace TikTakToe
                 visual.ShowBoard(board);
                 player1Turn = !player1Turn;
 
-            }
-            
-
-
-
+            } 
         }
 
         public bool IsGameOver()
         {
-            int elementWin = board.WinnerCheck();
 
-            if (elementWin == 0)
+
+                if (board.WinnerCheck() != 0)
+                {
+                    int playerWinner = board.WinnerCheck();
+                    Console.WriteLine("Player " + visual.GetSymbol(playerWinner) + " wins!");
+
+                    return true;
+                }
+
+                if (board.IsBoardFull())
+                {
+                    Console.WriteLine("Draw");
+                    return true;
+                }
+
                 return false;
-            else if (elementWin == 1)
-            {
-                Console.WriteLine(" \n_________ " + visual.GetSimbol( player1.GetPlayer())+ "   wins!   __________________________");
-                return true;
-            }
-            else if (elementWin == 2)
-            {
-                Console.WriteLine(" \n _________" + visual.GetSimbol( player2.GetPlayer()) + "  wins!   ______________________");
-                return true;
             }
 
-            return false;
-        }
 
         
+
+
 
 
 
