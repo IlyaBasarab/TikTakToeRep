@@ -23,6 +23,7 @@ namespace TikTakToe
         public void Start()
         {
             board.EmptyCellsBoard();
+
             Console.WriteLine("Choose your game: \n"
                 +"1.player vs player \n"
                 +"2.player vs computer \n");

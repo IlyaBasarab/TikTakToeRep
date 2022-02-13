@@ -105,18 +105,21 @@ namespace TikTakToe
 
             try
             {
-                
-                for (int i = 0; i < GetRowCount(); i++)
+
+                for (int i = 0; i < GetRowCount() - 1; i++)
                 {
                     if (GetElem(0, i) == GetElem(1, i) && GetElem(1, i) == GetElem(2, i))
                     {
                         return GetElem(1, i);
                     }
+                }
 
+                for(int j =0; j<GetColCount()-1;j++)
+                { 
 
-                    else if (GetElem(i, 0) == GetElem(i, 1) && GetElem(i, 1) == GetElem(i, 2))
+                if (GetElem(j, 0) == GetElem(j, 1) && GetElem(j, 1) == GetElem(j, 2))
                     {
-                        return GetElem(i, 1);
+                        return GetElem(j, 1);
                     }
                 }
 
@@ -145,48 +148,79 @@ namespace TikTakToe
         {
             try
             {
+                Cell winCell=new Cell(3,3,3);
                 Cell[] row = new Cell[3];
                 Cell[] col = new Cell[3];
                 Cell[] line1 = new Cell[3];
                 Cell[] line2 = new Cell[3];
+                int check = 0;
 
-                for (int i = 0; i < GetRowCount(); i++)
+                while (check!=4) { 
+                if (check==0)
                 {
-                    row[0] = board[i, 0];
-                    row[1] = board[i, 1];
-                    row[2] = board[i, 2];
-                    Array.Sort(row, new CellComp());
-                    if (row[0].elem == 0 && row[1].elem == winnerPlayer && row[2].elem == winnerPlayer)
-                        return row[0];
+                        for (int i = 0; i < GetRowCount() - 1; i++)
+                        {
+                            row[0] = board[i, 0];
+                            row[1] = board[i, 1];
+                            row[2] = board[i, 2];
+                            Array.Sort(row, new CellComp());
+                            if (row[0].elem == 0 && row[1].elem == winnerPlayer && row[2].elem == winnerPlayer)
+                            {
+                                return winCell = row[0];
+                            }
+                        }
+                        check ++;
+
+
+                    }
+                else if (check==1)
+                {
+
+
+                    for (int j = 0; j < GetColCount() - 1; j++)
+                    {
+                        col[0] = board[0, j];
+                        col[1] = board[1, j];
+                        col[2] = board[2, j];
+
+                            Array.Sort(col, new CellComp());
+                            if (col[0].elem == 0 && col[1].elem == winnerPlayer && col[2].elem == winnerPlayer)
+                            {
+                                
+                                return winCell = col[0];
+                            }
+                            check ++;
+                     }
+
                 }
 
-                for(int j =0; j< GetColCount(); j++)
-                { 
-                    col[0] = board[0, j];
-                    col[1] = board[1, j];
-                    col[2] = board[2, j];
-                    Array.Sort(col, new CellComp());
-                    if (col[0].elem == 0 && col[1].elem == winnerPlayer && col[2].elem == winnerPlayer)
-                        return col[0];
+                else if (check==2)
+                {
+                    line1[0] = board[0, 0];
+                    line1[1] = board[1, 1];
+                    line1[2] = board[2, 2];
+                    Array.Sort(line1, new CellComp());
+                    if (line1[0].elem == 0 && line1[1].elem == winnerPlayer && line1[2].elem == winnerPlayer)
+                    {
+                        return winCell = line1[0];
+                    }
+                    check ++;
+                    }
+                else if (check==3)
+                {
+                    line2[0] = board[2, 0];
+                    line2[1] = board[1, 1];
+                    line2[2] = board[0, 2];
+                    Array.Sort(line2, new CellComp());
+                    if (line2[0].elem == 0 && line2[1].elem == winnerPlayer && line2[2].elem == winnerPlayer)
+                    {
+                         return winCell = line2[0];
+                    }
+                     check ++;
+                    }
                 }
-
-                line1[0] = board[0, 0];
-                        line1[1] = board[1, 1];
-                        line1[2] = board[2, 2];
-                Array.Sort(line1, new CellComp());
-                        if (line1[0].elem == 0 && line1[1].elem == winnerPlayer && line1[2].elem == winnerPlayer)
-                            return line1[0];
-
-                        line2[0] = board[2,0];
-                        line2[1] = board[1, 1];
-                        line2[2] = board[0, 2];
-                        Array.Sort(line2, new CellComp());
-                        if (line2[0].elem == 0 && line2[1].elem == winnerPlayer && line2[2].elem == winnerPlayer)
-                            return line2[0];
-
-    
-            return null;
-
+                
+            return winCell;
             }
             catch(Exception ex)
             {
