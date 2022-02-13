@@ -17,7 +17,7 @@ namespace TikTakToe
         {
 
 
-            if (board.GetWinnerCell(1) == null || board.GetWinnerCell(playerSymbol) == null)
+            if (board.GetWinnerCell(1) == null)
             {
                 int rowIdx = 0;
                 int colIdx = 0;
