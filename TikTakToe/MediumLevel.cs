@@ -40,7 +40,7 @@ namespace TikTakToe
             }
             else
             {
-                Console.Write( board.GetWinnerCell(1).ToString());
+                
                 board.SetElement(board.GetWinnerCell(1).rowIdx, board.GetWinnerCell(1).colIdx, playerSymbol);
 
             }
