@@ -15,7 +15,10 @@ namespace TikTakToe
 
         public override void MakeMove(Board board, int playerSymbol)
         {
-            if (board.GetWinnerCell(1).elem == 3 && board.GetWinnerCell(playerSymbol).elem == 3) 
+
+            Console.WriteLine(" X:  " + board.GetWinnerCell(1).ToString() +"   O:   " +  board.GetWinnerCell(playerSymbol).ToString());
+
+             if (board.GetWinnerCell(1).elem == 3 && board.GetWinnerCell(playerSymbol).elem == 3) 
             {
                 int rowIdx = 0;
                 int colIdx = 0;
